@@ -145,9 +145,9 @@ function updateSeedTable(){
 
 document.getElementById('connectedControls').getElementsByTagName('select')[0].onchange = function(){
     let metric = this.value;
-    papers = d3.select('#connected-paper-container').selectAll('tr').select('td').select('.inner-paper-box')
+    papers = d3.select('#connected-paper-container').selectAll('.outer-paper-box').select('.inner-paper-box')
     papers.select('.metric').html(function(p){
-        return(p[metric]?p[metric]:'0')
+        return('<p>'+(p[metric]?p[metric]:0)+'</p>')
     })
     plotResultsTable(metric,1,true)    
 }
@@ -167,7 +167,7 @@ function updateResultsTable(metric){
     })
 
     papers.select('.metric').html(function(p){
-        return(p[metric]?p[metric]:'0')
+        return('<p>'+(p[metric]?p[metric]:0)+'</p>')
     })
 
     papers.select('.author-year').html(function(p){
@@ -201,7 +201,7 @@ function plotResultsTable(metric,pageNum,replot){
     })
 
     papers.select('.metric').html(function(p){
-        return(p[metric]?p[metric]:'0')
+        return('<p>'+(p[metric]?p[metric]:0)+'</p>')
     })
 
     papers.select('.author-year').html(function(p){
@@ -225,9 +225,9 @@ function plotResultsTable(metric,pageNum,replot){
         .html(function(p){
             return(p.Title)
         })
-    newpapers.append('p').attr('class','metric')
+    newpapers.append('div').attr('class','metric')
         .html(function(p){
-            return(p[metric]?p[metric]:'')
+            return ('<p>'+(p[metric]?p[metric]:0)+'</p>')
         })
     newpapers.append('p').attr('class','author-year')
         .html(function(p){

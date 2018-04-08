@@ -231,6 +231,20 @@ h1 {
     top: 0em;
     right: 0em;
     margin: 1em;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius:1.5em;
+    background-color: red;
+    text-align: center;
+    display: flex;
+    align-items: center;     
+    color:white;
+}
+
+.metric > p {
+    margin:0em;
+    width: 100%;
+    text-align: center;
 }
 .author-year {
     text-align: right;
