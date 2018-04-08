@@ -156,11 +156,11 @@ function updateResultsTable(metric){
     
     var nonSeeds = Papers.filter(function(p){return(!p.seed)})
 
-    paperbox = d3.select('#connected-paper-container').selectAll('tr')
+    paperbox = d3.select('#connected-paper-container').selectAll('.outer-paper-box')
                      .data(nonSeeds,function(d){return d.ID});
                      //.sort((a,b)=>b.seedsCitedBy<a.seedsCitedBy)
 
-    papers = d3.select('#connected-paper-container').selectAll('tr').select('td').select('.inner-paper-box')
+    papers = d3.select('#connected-paper-container').selectAll('.outer-paper-box').select('.inner-paper-box')
     
     papers.select('.paper-title').html(function(p){
         return(p.Title)
@@ -178,41 +178,6 @@ function updateResultsTable(metric){
         return("<a target='_blank' href='https://doi.org/"+p.DOI+"'>"+p.DOI+"</a>")
     })
     
-}
-
-function sortResultsTable(metric){
-    var table, rows, switching, i, x, y, shouldSwitch;
-    table = document.getElementById('connected-paper-container');
-    switching = true;
-    /* Make a loop that will continue until
-    no switching has been done: */
-    while (switching) {
-      // Start by saying: no switching is done:
-      switching = false;
-      rows = table.getElementsByTagName("tr");
-      /* Loop through all table rows (except the
-      first, which contains table headers): */
-      for (i = 0; i < (rows.length - 1); i++) {
-        // Start by saying there should be no switching:
-        shouldSwitch = false;
-        /* Get the two elements you want to compare,
-        one from current row and one from the next: */
-        x = rows[i].__data__[metric];
-        y = rows[i + 1].__data__[metric];
-        // Check if the two rows should switch place:
-        if (x < y) {
-          // I so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
-        }
-      }
-      if (shouldSwitch) {
-        /* If a switch has been marked, make the switch
-        and mark that a switch has been done: */
-        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-        switching = true;
-      }
-    }
 }
 
 function plotResultsTable(metric,pageNum,replot){
